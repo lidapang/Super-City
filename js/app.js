@@ -10,6 +10,8 @@ var Simulation = function() {
 
     this.date = 0;
 
+    // draw area on canvas
+
     this.start = function() {
         addToLog( 'starting Simulation' );
         startDay();
@@ -62,7 +64,13 @@ var Simulation = function() {
 var $btn_control = $( '.btn_control' ),
     config = {
         day_length: 1000,
-        log_class: 'simulation-log'
+        area: {
+            x: 100,
+            y: 100,
+            z: 100
+        },
+        log_class: 'simulation-log',
+        canvas: 'simulation-log'
     },
     Simulation = new Simulation( config );
 
@@ -81,5 +89,6 @@ $btn_control.on( 'click', function() {
             break;   
         default :
             console.log( 'Invalid button type' );   
+    }
 
 });
