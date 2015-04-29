@@ -20,6 +20,12 @@ var Simulation = function() {
         clearTimeout( timer );
     }
 
+    this.reset = function() {
+        this.date = 0;
+        clearLog();
+        clearTimeout( timer );
+    }    
+
     var startDay = function() {
         self.date++;
         addToLog( 'Day ' + self.date + ' has started' );
@@ -45,6 +51,12 @@ var Simulation = function() {
 
         $log.append( '<li>' + msg + '</li>' );
     }
+
+    var clearLog = function() {
+        $log = $( '#' + self.log_class );
+
+        $log.empty();
+    }
 }
 
 var $btn_control = $( '.btn_control' ),
@@ -63,7 +75,10 @@ $btn_control.on( 'click', function() {
             break;
         case 'stop' :
             Simulation.stop();
-            break;         
+            break;
+        case 'reset' :
+            Simulation.reset();
+            break;   
         default :
             console.log( 'Invalid button type' );   
     }
