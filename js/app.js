@@ -81,7 +81,5 @@ $btn_control.on( 'click', function() {
             break;   
         default :
             console.log( 'Invalid button type' );   
-    }
 
-    console.log( type );
 });
