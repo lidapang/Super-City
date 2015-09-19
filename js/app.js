@@ -7,22 +7,22 @@ var $btn_control = $( '.btn_control' ),
             z: 100
         },
         log_class: 'simulation-log',
-        viewport: 'viewport'
+        viewport_id: 'viewport'
     },
-    Simulation = new Simulation( config );
+    simulation = new Simulation( config );
 
 $btn_control.on( 'click', function() {
     var type = $( this ).data( 'type' );
 
     switch( type ) {
         case 'start' :
-            Simulation.start();
+            simulation.start();
             break;
         case 'stop' :
-            Simulation.stop();
+            simulation.stop();
             break;
         case 'reset' :
-            Simulation.reset();
+            simulation.reset();
             break;   
         default :
             console.log( 'Invalid button type' );   

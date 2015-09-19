@@ -1,27 +1,17 @@
 var Simulation = function() {
 
-    var self = this,
-        timer,
-        MAX_LOG_ENTRIES = 20;
-
     for( var c in config ) {
         this[ c ] = config[ c ];
     }
 
+    var self = this,
+        timer,
+        MAX_LOG_ENTRIES = 20,
+        city = new City({}),
+        viewport = document.getElementById( this.viewport_id ),
+        model = new Model( viewport, city );
+
     this.date = 0;
-
-    // generate viewport
-    var scene = new THREE.Scene();
-    var camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
-
-    // get viewport size
-    var viewport = document.getElementById( this.viewport );
-
-    console.log( viewport.offsetWidth, viewport.offsetHeight );
-
-    var renderer = new THREE.WebGLRenderer();
-    renderer.setSize( viewport.offsetWidth, viewport.offsetHeight );
-    viewport.appendChild( renderer.domElement );
 
     this.start = function() {
         addToLog( 'starting Simulation' );
@@ -43,6 +33,8 @@ var Simulation = function() {
         self.date++;
         addToLog( 'Day ' + self.date + ' has started' );
         timer = setTimeout( endOfDay, self.day_length );
+
+        model.render();
     }
 
     var endOfDay = function() {
